@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+const oosRoutes = require("./routes/oos.routes");
+
 const app = express();
 
 app.use(cors());
@@ -14,6 +16,8 @@ app.get("/api/health", (req, res) => {
         version: "1.0.0",
     });
 });
+
+app.use("/api/oos", oosRoutes);
 
 const PORT = process.env.PORT || 4000;
 
