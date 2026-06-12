@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  ANALYST
+  REVIEWER
+  QA
+}
+
+enum OOSStatus {
+  OPEN
+  IN_INVESTIGATION
+  PHASE_ONE_COMPLETED
+  REQUIRES_PHASE_TWO
+  CLOSED
+}
+
+enum OOSPhase {
+  PHASE_ONE
+  PHASE_TWO
+  COMPLETED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(ANALYST)
+  isActive     Boolean  @default(true)
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  oosCases     OOSCase[]
+}
+
+model OOSCase {
+  id             String    @id @default(uuid())
+  code           String    @unique
+
+  productName    String
+  batchNumber    String
+  area           String?
+  testType       String
+  method         String
+  resultObtained String
+  specification  String
+  microorganism  String?
+  description    String?
+
+  status         OOSStatus @default(OPEN)
+  phase          OOSPhase   @default(PHASE_ONE)
+
+  createdById    String
+  createdBy      User      @relation(fields: [createdById], references: [id])
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
