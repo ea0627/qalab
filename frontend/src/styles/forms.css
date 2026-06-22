@@ -1,0 +1,55 @@
+.oos-form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.oos-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: #243447;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.oos-form input,
+.oos-form textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 1px solid #d8e2ea;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.oos-form input:focus,
+.oos-form textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.12);
+}
+
+.oos-form textarea {
+  resize: vertical;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 720px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}

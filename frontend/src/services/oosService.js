@@ -11,3 +11,21 @@ export async function getOOSCases() {
   const result = await response.json();
   return result.data;
 }
+
+export async function createOOSCase(oosCaseData) {
+  const response = await fetch(`${API_BASE_URL}/oos`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(oosCaseData),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.message || "Error al crear el caso OOS.");
+  }
+
+  return result.data;
+}

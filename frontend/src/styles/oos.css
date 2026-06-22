@@ -1,0 +1,59 @@
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.oos-card {
+  padding: 1.2rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.case-code {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #006b94;
+}
+
+.status-badge {
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: var(--color-success-bg);
+  color: var(--color-success-text);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.oos-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.case-info {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.case-info p,
+.case-description {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.case-description {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #edf1f5;
+}

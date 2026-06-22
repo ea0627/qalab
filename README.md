@@ -37,8 +37,8 @@ Frontend desplegado en Vercel:
 
 🔗 https://qalab-steel.vercel.app
 
-> Nota: en esta etapa el frontend ya está desplegado, pero el backend todavía se ejecuta localmente.  
-> La conexión completa con datos reales en producción se habilitará cuando la API backend sea desplegada y configurada mediante `VITE_API_BASE_URL`.
+> Nota: el frontend ya está desplegado públicamente.  
+> La conexión completa con datos reales en producción se habilitará cuando el backend sea desplegado y configurado mediante `VITE_API_BASE_URL`.
 
 ---
 
@@ -125,6 +125,35 @@ qalab/
 └── .gitignore
 ```
 
+## 🎨 Arquitectura de estilos
+
+El frontend utiliza una estructura modular de estilos para mantener el proyecto ordenado y escalable.
+
+```
+frontend/src/styles/
+├── main.css
+├── variables.css
+├── base.css
+├── layout.css
+├── components.css
+├── oos.css
+└── forms.css
+```
+
+### Descripción de archivos
+
+| Archivo          | Propósito                                                          |
+| ---------------- | ------------------------------------------------------------------ |
+| `main.css`       | Archivo principal que importa todos los estilos                    |
+| `variables.css`  | Colores, sombras, radios y variables globales                      |
+| `base.css`       | Reset básico y estilos globales                                    |
+| `layout.css`     | Estructura general de la aplicación                                |
+| `components.css` | Componentes reutilizables como sidebar, botones, badges y mensajes |
+| `oos.css`        | Estilos específicos del listado y tarjetas de casos OOS            |
+| `forms.css`      | Estilos para formularios del sistema                               |
+
+Esta organización permite separar responsabilidades visuales y facilita el mantenimiento a medida que QALab crezca.
+
 ---
 
 ## ✅ Estado actual del proyecto
@@ -143,10 +172,25 @@ qalab/
 
   * `User`
   * `OOSCase`
+
 * Usuario administrador inicial creado mediante seed.
 * API REST inicial para casos OOS implementada.
 * Caso OOS de prueba creado exitosamente desde Thunder Client.
 * Datos verificados en Prisma Studio.
+
+* Frontend inicial conectado a la API local de OOS.
+* Listado visual de casos OOS implementado.
+* Branding inicial de QALab configurado:
+
+  * Título del sitio.
+  * Favicon personalizado.
+  * Metadatos SEO.
+  * Open Graph básico.
+  * `robots.txt`.
+  * `sitemap.xml`.
+* Frontend desplegado inicialmente en Vercel.
+* Arquitectura de estilos reorganizada en archivos CSS modulares.
+
 
 ---
 
