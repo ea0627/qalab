@@ -31,6 +31,17 @@ La visión del producto no es ser un simple formulario digital, sino convertirse
 
 ---
 
+## 🌐 Demo
+
+Frontend desplegado en Vercel:
+
+🔗 https://qalab-steel.vercel.app
+
+> Nota: en esta etapa el frontend ya está desplegado, pero el backend todavía se ejecuta localmente.  
+> La conexión completa con datos reales en producción se habilitará cuando la API backend sea desplegada y configurada mediante `VITE_API_BASE_URL`.
+
+---
+
 ## 🎯 Objetivo del MVP
 
 Construir una plataforma funcional que permita:
