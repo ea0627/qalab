@@ -37,8 +37,14 @@ Frontend desplegado en Vercel:
 
 🔗 https://qalab-steel.vercel.app
 
-> Nota: el frontend ya está desplegado públicamente.  
-> La conexión completa con datos reales en producción se habilitará cuando el backend sea desplegado y configurado mediante `VITE_API_BASE_URL`.
+Backend API:
+
+🔗 https://qalab-api-gamma.vercel.app
+
+Endpoints públicos:
+
+GET https://qalab-api-gamma.vercel.app/api/health
+GET https://qalab-api-gamma.vercel.app/api/oos
 
 ---
 
@@ -181,23 +187,29 @@ Esta organización permite separar responsabilidades visuales y facilita el mant
 * Frontend inicial conectado a la API local de OOS.
 * Listado visual de casos OOS implementado.
 * Branding inicial de QALab configurado:
+  - Título del sitio.
+  - Favicon personalizado.
+  - Metadatos SEO.
+  - Open Graph básico.
+  - `robots.txt`.
+  - `sitemap.xml`.
 
-  * Título del sitio.
-  * Favicon personalizado.
-  * Metadatos SEO.
-  * Open Graph básico.
-  * `robots.txt`.
-  * `sitemap.xml`.
 * Frontend desplegado inicialmente en Vercel.
 * Arquitectura de estilos reorganizada en archivos CSS modulares.
 
-- Formulario frontend para crear casos OOS implementado.
-- Navegación básica entre:
+* Formulario frontend para crear casos OOS implementado.
+* Navegación básica entre:
   - Casos OOS
   - Nuevo OOS
   - Dashboard
-- Creación de casos OOS desde la interfaz validada correctamente.
-- Al crear un caso OOS, el sistema vuelve al listado y muestra el nuevo registro.
+
+* Creación de casos OOS desde la interfaz validada correctamente.
+* Al crear un caso OOS, el sistema vuelve al listado y muestra el nuevo registro.
+
+* Frontend desplegado en Vercel.
+* Backend desplegado en Vercel.
+* Base de datos PostgreSQL en Neon.
+* Frontend conectado a la API pública mediante VITE_API_BASE_URL.
 ---
 
 ## 🧪 Modelos iniciales
