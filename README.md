@@ -191,7 +191,13 @@ Esta organización permite separar responsabilidades visuales y facilita el mant
 * Frontend desplegado inicialmente en Vercel.
 * Arquitectura de estilos reorganizada en archivos CSS modulares.
 
-
+- Formulario frontend para crear casos OOS implementado.
+- Navegación básica entre:
+  - Casos OOS
+  - Nuevo OOS
+  - Dashboard
+- Creación de casos OOS desde la interfaz validada correctamente.
+- Al crear un caso OOS, el sistema vuelve al listado y muestra el nuevo registro.
 ---
 
 ## 🧪 Modelos iniciales
@@ -553,18 +559,30 @@ Resultado:
 
 ---
 
+### Frontend
+
+Se validó el flujo inicial desde la interfaz:
+
+- Visualización de casos OOS existentes.
+- Creación de un nuevo caso OOS desde formulario.
+- Guardado correcto del caso en PostgreSQL / Neon.
+- Actualización del listado después de crear el registro.
+
+---
+
 ## 🗺️ Roadmap del MVP
 
 ### Sprint actual
 
-API REST inicial para casos OOS.
+Formulario frontend para casos OOS.
 
 Estado:
 
-* `GET /api/oos` implementado.
-* `POST /api/oos` implementado.
-* `GET /api/oos/:id` implementado.
-* `PATCH /api/oos/:id` implementado.
+- Listado de casos OOS implementado.
+- Servicio frontend para consumir la API implementado.
+- Formulario de creación de caso OOS implementado.
+- Navegación básica entre secciones implementada.
+- Creación de casos OOS desde frontend validada.
 
 ---
 
