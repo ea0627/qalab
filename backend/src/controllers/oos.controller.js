@@ -68,7 +68,10 @@ async function createOOS(req, res) {
       });
     }
 
-    const createdCase = await createOOSCase(req.body);
+    const createdCase = await createOOSCase({
+      ...req.body,
+      createdById: req.user.id,
+    });
 
     res.status(201).json({
       success: true,

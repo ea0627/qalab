@@ -7,11 +7,27 @@ const {
   updateOOS,
 } = require("../controllers/oos.controller");
 
+const authenticateUser = require("../middlewares/authenticateUser");
+const authorizeRoles = require("../middlewares/authorizeRoles");
+
 const router = express.Router();
 
 router.get("/", getAllOOSCases);
-router.post("/", createOOS);
+
+router.post(
+  "/",
+  authenticateUser,
+  authorizeRoles("ADMIN", "ANALYST", "QA"),
+  createOOS
+);
+
 router.get("/:id", getOOSCase);
-router.patch("/:id", updateOOS);
+
+router.patch(
+  "/:id",
+  authenticateUser,
+  authorizeRoles("ADMIN", "QA", "REVIEWER"),
+  updateOOS
+);
 
 module.exports = router;

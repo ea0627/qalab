@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const oosRoutes = require("./routes/oos.routes");
+const authRoutes = require("./routes/auth.routes");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get("/api/health", (req, res) => {
   });
 });
 
+app.use("/api/auth", authRoutes);
 app.use("/api/oos", oosRoutes);
 
 module.exports = app;
