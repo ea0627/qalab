@@ -214,6 +214,19 @@ Esta organización permite separar responsabilidades visuales y facilita el mant
 
 ## 🧪 Modelos iniciales
 
+## 🔐 Autenticación y roles
+
+QALab cuenta con autenticación JWT para proteger operaciones críticas del módulo OOS.
+
+### Endpoints de autenticación
+
+```http
+POST /api/auth/login
+GET /api/auth/me
+```
+
+---
+
 ### User
 
 Representa los usuarios del sistema.

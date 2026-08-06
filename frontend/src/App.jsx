@@ -1,14 +1,31 @@
 import { useState } from "react";
 import OOSList from "./pages/OOSList";
 import NewOOSCase from "./pages/NewOOSCase";
+import Login from "./pages/Login";
+import { getStoredUser, logoutUser } from "./services/authService";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("oos-list");
   const [refreshKey, setRefreshKey] = useState(0);
+  const [authenticatedUser, setAuthenticatedUser] = useState(getStoredUser());
+
+  function handleLogin(user) {
+    setAuthenticatedUser(user);
+  }
+
+  function handleLogout() {
+    logoutUser();
+    setAuthenticatedUser(null);
+    setCurrentPage("oos-list");
+  }
 
   function handleCaseCreated() {
     setRefreshKey((currentKey) => currentKey + 1);
     setCurrentPage("oos-list");
+  }
+
+  if (!authenticatedUser) {
+    return <Login onLogin={handleLogin} />;
   }
 
   return (
@@ -48,12 +65,25 @@ function App() {
 
       <section className="content">
         <header className="hero">
-          <p className="eyebrow">MVP regulatorio funcional</p>
-          <h2>Asistente inteligente para investigaciones OOS y CAPA</h2>
-          <p>
-            Plataforma para registrar, investigar y documentar resultados fuera
-            de especificación en laboratorio.
-          </p>
+          <div>
+            <p className="eyebrow">MVP regulatorio funcional</p>
+            <h2>Asistente inteligente para investigaciones OOS y CAPA</h2>
+            <p>
+              Plataforma para registrar, investigar y documentar resultados fuera
+              de especificación en laboratorio.
+            </p>
+          </div>
+
+          <div className="user-session">
+            <div>
+              <strong>{authenticatedUser.name}</strong>
+              <span>{authenticatedUser.role}</span>
+            </div>
+
+            <button className="secondary-button" type="button" onClick={handleLogout}>
+              Cerrar sesión
+            </button>
+          </div>
         </header>
 
         {currentPage === "oos-list" && <OOSList key={refreshKey} />}

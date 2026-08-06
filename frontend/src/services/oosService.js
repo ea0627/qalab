@@ -1,3 +1,5 @@
+import { getStoredToken } from "./authService";
+
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
 
@@ -13,15 +15,32 @@ export async function getOOSCases() {
 }
 
 export async function createOOSCase(oosCaseData) {
+  const token = getStoredToken();
+
+  if (!token) {
+    throw new Error("Debes iniciar sesión para crear un caso OOS.");
+  }
+
   const response = await fetch(`${API_BASE_URL}/oos`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(oosCaseData),
   });
 
   const result = await response.json();
+
+  if (response.status === 401) {
+    throw new Error(
+      "Tu sesión no es válida o ha expirado. Inicia sesión nuevamente."
+    );
+  }
+
+  if (response.status === 403) {
+    throw new Error("No tienes permisos para crear casos OOS.");
+  }
 
   if (!response.ok) {
     throw new Error(result.message || "Error al crear el caso OOS.");
