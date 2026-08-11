@@ -16,7 +16,7 @@ const requiredFields = [
 
 async function getAllOOSCases(req, res) {
   try {
-    const cases = await listOOSCases();
+    const cases = await listOOSCases(req.user);
 
     res.json({
       success: true,
@@ -43,10 +43,17 @@ async function getOOSCase(req, res) {
       });
     }
 
-    res.json({
-      success: true,
-      data: oosCase,
-    });
+    const canViewAllCases = req.user.role === "ADMIN" || req.user.role === "QA";
+    const isCaseOwner = oosCase.createdById === req.user.id;
+
+    if (!canViewAllCases && !isCaseOwner) {
+      return res.status(403).json({
+        success: false,
+        message: "You do not have permission to view this OOS case.",
+      });
+    }
+
+    res.json({ success: true, data: oosCase });
   } catch (error) {
     res.status(500).json({
       success: false,

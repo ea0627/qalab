@@ -12,7 +12,7 @@ const authorizeRoles = require("../middlewares/authorizeRoles");
 
 const router = express.Router();
 
-router.get("/", getAllOOSCases);
+router.get("/", authenticateUser, getAllOOSCases);
 
 router.post(
   "/",
@@ -21,12 +21,12 @@ router.post(
   createOOS
 );
 
-router.get("/:id", getOOSCase);
+router.get("/:id", authenticateUser, getOOSCase);
 
 router.patch(
   "/:id",
   authenticateUser,
-  authorizeRoles("ADMIN", "QA", "REVIEWER"),
+  authorizeRoles("ADMIN"),
   updateOOS
 );
 

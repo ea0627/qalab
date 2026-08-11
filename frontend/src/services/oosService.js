@@ -3,29 +3,46 @@ import { getStoredToken } from "./authService";
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
 
-export async function getOOSCases() {
-  const response = await fetch(`${API_BASE_URL}/oos`);
+function getAuthHeaders() {
+  const token = getStoredToken();
 
-  if (!response.ok) {
-    throw new Error("Error al consultar los casos OOS.");
+  if (!token) {
+    throw new Error("Debes iniciar sesión para consultar casos OOS.");
   }
 
+  return {
+    Authorization: `Bearer ${token}`,
+  };
+}
+
+export async function getOOSCases() {
+  const response = await fetch(`${API_BASE_URL}/oos`, {
+    headers: {
+      ...getAuthHeaders(),
+    },
+  });
+
   const result = await response.json();
+
+  if (response.status === 401) {
+    throw new Error(
+      "Tu sesión no es válida o ha expirado. Inicia sesión nuevamente."
+    );
+  }
+
+  if (!response.ok) {
+    throw new Error(result.message || "Error al consultar los casos OOS.");
+  }
+
   return result.data;
 }
 
 export async function createOOSCase(oosCaseData) {
-  const token = getStoredToken();
-
-  if (!token) {
-    throw new Error("Debes iniciar sesión para crear un caso OOS.");
-  }
-
   const response = await fetch(`${API_BASE_URL}/oos`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...getAuthHeaders(),
     },
     body: JSON.stringify(oosCaseData),
   });

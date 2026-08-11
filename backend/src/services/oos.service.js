@@ -1,19 +1,20 @@
 const prisma = require("../config/prisma");
 const generateOosCode = require("../utils/generateOosCode");
 
-async function listOOSCases() {
+async function listOOSCases(user) {
+  const whereClause =
+    user.role === "ADMIN" || user.role === "QA"
+      ? {}
+      : {
+          createdById: user.id,
+        };
+
   return prisma.oOSCase.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
+    where: whereClause,
+    orderBy: { createdAt: "desc" },
     include: {
       createdBy: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          role: true,
-        },
+        select: { id: true, name: true, email: true, role: true },
       },
     },
   });
